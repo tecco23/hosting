@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TechquimLab - Equipos de Laboratorio de Alta Calidad</title>
+    <style>
+        :root {
+            --primary-color: #0056b3;
+            --secondary-color: #004085;
+            --accent-color: #17a2b8;
+            --light-gray: #f8f9fa;
+            --dark-gray: #343a40;
+            --white: #ffffff;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            line-height: 1.6;
+            color: #333;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Header y navegación */
+        header {
+            background-color: var(--primary-color);
+            padding: 1rem 0;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .navbar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            color: var(--white);
+            font-size: 1.8rem;
+            font-weight: bold;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--accent-color);
+        }
+
+        .nav-menu {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-menu li {
+            margin-left: 1.5rem;
+        }
+
+        .nav-menu a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Banner */
+        .banner {
+            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('./Figuras de Laboratorio/laboratorio-principal.jpg') center/cover no-repeat;
+            color: var(--white);
+            text-align: center;
+            padding: 5rem 0;
+        }
+
+        .banner h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .banner p {
+            font-size: 1.2rem;
+            max-width: 800px;
+            margin: 0 auto 2rem;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--accent-color);
+            color: var(--white);
+            padding: 0.8rem 1.5rem;
+            border-radius: 4px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.3s;
+        }
+
+        .btn:hover {
+            background-color: #138496;
+        }
+
+        /* Sección de Productos */
+        .products {
+            padding: 4rem 0;
+            background-color: var(--light-gray);
+        }
+
+        .section-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: var(--dark-gray);
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 80px;
+            height: 4px;
+            background-color: var(--accent-color);
+            margin: 0.5rem auto 0;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .product-card {
+            background-color: var(--white);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image {
+            height: 200px;
+            overflow: hidden;
+        }
+
+        .product-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-image img {
+            transform: scale(1.05);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-info h3 {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+            color: var(--dark-gray);
+        }
+
+        .product-info p {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .product-info .btn {
+            font-size: 0.9rem;
+            padding: 0.5rem 1rem;
+        }
+
+        /* Sección Acerca de Nosotros */
+        .about {
+            padding: 4rem 0;
+        }
+
+        .about-content {
+            display: flex;
+            align-items: center;
+            gap: 3rem;
+        }
+
+        .about-image {
+            flex: 1;
+        }
+
+        .about-image img {
+            width: 100%;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .about-text {
+            flex: 1;
+        }
+
+        .about-text h2 {
+            font-size: 2rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: #555;
+        }
+
+        /* Sección de Contacto */
+        .contact {
+            padding: 4rem 0;
+            background-color: var(--light-gray);
+        }
+
+        .contact-content {
+            display: flex;
+            gap: 3rem;
+        }
+
+        .contact-info {
+            flex: 1;
+        }
+
+        .contact-info h3 {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            color: var(--dark-gray);
+        }
+
+        .contact-details {
+            list-style: none;
+        }
+
+        .contact-details li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-form {
+            flex: 2;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        textarea.form-control {
+            min-height: 150px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--dark-gray);
+            color: var(--white);
+            padding: 2rem 0;
+            text-align: center;
+        }
+
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 2rem;
+        }
+
+        .footer-logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+        }
+
+        .footer-logo span {
+            color: var(--accent-color);
+        }
+
+        .footer-links {
+            list-style: none;
+            display: flex;
+            gap: 1.5rem;
+        }
+
+        .footer-links a {
+            color: #ddd;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: var(--accent-color);
+        }
+
+        .footer-social {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            color: var(--white);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            background-color: rgba(255, 255, 255, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+
+        .footer-social a:hover {
+            background-color: var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 2rem;
+            color: #aaa;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .about-content, .contact-content {
+                flex-direction: column;
+            }
+            
+            .product-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .nav-menu {
+                display: none; /* Simplificado para este ejemplo */
+            }
+            
+            .footer-content {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .banner h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header y Navegación -->
+    <header>
+        <div class="container">
+            <nav class="navbar">
+                <a href="#" class="logo">Techquim<span>Lab</span></a>
+                <ul class="nav-menu">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Banner principal -->
+    <section class="banner" id="inicio">
+        <div class="container">
+            <h1>Equipos de Laboratorio de Alta Precisión</h1>
+            <p>Ofrecemos una amplia gama de instrumentos y equipos de laboratorio de la más alta calidad para garantizar resultados precisos y confiables en sus análisis y mediciones.</p>
+            <a href="#productos" class="btn">Ver Productos</a>
+        </div>
+    </section>
+
+    <!-- Sección de Productos -->
+    <section class="products" id="productos">
+        <div class="container">
+            <h2 class="section-title">Nuestros Productos</h2>
+            <div class="product-grid">
+                <!-- PHmetros -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./Figuras de Laboratorio/phmetro.jpg" alt="pHmetro">
+                    </div>
+                    <div class="product-info">
+                        <h3>pHmetros</h3>
+                        <p>Equipos de medición de pH de alta precisión para aplicaciones de laboratorio e industriales.</p>
+                        <a href="#" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Alcoholímetros -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./Figuras de Laboratorio/alcoholimetro.jpg" alt="Alcoholímetro">
+                    </div>
+                    <div class="product-info">
+                        <h3>Alcoholímetros</h3>
+                        <p>Dispositivos precisos para la determinación del contenido de alcohol en diversas muestras.</p>
+                        <a href="#" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Detectores de gas -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./Figuras de Laboratorio/detector-gas.jpg" alt="Detector de Gas">
+                    </div>
+                    <div class="product-info">
+                        <h3>Detectores de Gas Portátiles</h3>
+                        <p>Monitores de alta sensibilidad para la detección de gases peligrosos en ambientes de trabajo.</p>
+                        <a href="#" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Turbidímetros -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./Figuras de Laboratorio/turbidimetro.jpg" alt="Turbidímetro">
+                    </div>
+                    <div class="product-info">
+                        <h3>Turbidímetros</h3>
+                        <p>Instrumentos para medir la turbidez en líquidos, ideales para análisis de agua y control de calidad.</p>
+                        <a href="#" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Analizadores de cloro -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./Figuras de Laboratorio/analizador-cloro.jpg" alt="Analizador de Cloro">
+                    </div>
+                    <div class="product-info">
+                        <h3>Analizadores de Cloro</h3>
+                        <p>Equipos especializados para la medición precisa de cloro y cloro residual en agua.</p>
+                        <a href="#" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Dosificadores de cloro -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./Figuras de Laboratorio/dosificador-cloro.jpg" alt="Dosificador de Cloro">
+                    </div>
+                    <div class="product-info">
+                        <h3>Dosificadores de Cloro</h3>
+                        <p>Sistemas automatizados para la dosificación precisa de cloro en tratamiento de aguas.</p>
+                        <a href="#" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Conductivímetros -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./Figuras de Laboratorio/conductivimetro.jpg" alt="Conductivímetro">
+                    </div>
+                    <div class="product-info">
+                        <h3>Conductivímetros</h3>
+                        <p>Instrumentos de medición de conductividad eléctrica en soluciones acuosas y otros líquidos.</p>
+                        <a href="#" class="btn">Ver Detalles</a>
+                    </div>
+                </div>
+
+                <!-- Espacio para más productos -->
+                <div class="product-card">
+                    <div class="product-image">
+                        <img src="./Figuras de Laboratorio/equipos-varios.jpg" alt="Más Equipos">
+                    </div>
+                    <div class="product-info">
+                        <h3>Más Equipos</h3>
+                        <p>Descubra nuestra amplia gama de equipos de laboratorio especializados para diferentes aplicaciones.</p>
+                        <a href="#" class="btn">Ver Catálogo</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección Acerca de Nosotros -->
+    <section class="about" id="nosotros">
+        <div class="container">
+            <div class="about-content">
+                <div class="about-image">
+                    <img src="./Figuras de Laboratorio/nosotros.jpg" alt="Acerca de TechquimLab">
+                </div>
+                <div class="about-text">
+                    <h2>Sobre TechquimLab</h2>
+                    <p>Somos una empresa especializada en la venta y distribución de equipos e instrumentos de laboratorio de alta calidad. Con más de 15 años de experiencia en el mercado, hemos trabajado con laboratorios, universidades, centros de investigación e industrias en todo el país.</p>
+                    <p>Nuestro compromiso es ofrecer productos de la más alta calidad y precisión, respaldados por un servicio técnico especializado y un equipo de asesores expertos que le ayudarán a encontrar la solución perfecta para sus necesidades.</p>
+                    <p>Trabajamos con las marcas más reconocidas a nivel mundial, garantizando así la fiabilidad y durabilidad de todos nuestros productos.</p>
+                    <a href="#" class="btn">Conoce Más</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sección de Contacto -->
+    <section class="contact" id="contacto">
+        <div class="container">
+            <h2 class="section-title">Contáctenos</h2>
+            <div class="contact-content">
+                <div class="contact-info">
+                    <h3>Información de Contacto</h3>
+                    <ul class="contact-details">
+                        <li>
+                            <strong>Dirección:</strong> Mz A Lote 43, Urb. San Benito de Palermo, Oquendo, Callao
+                        </li>
+                        <li>
+                            <strong>Teléfono:</strong> +51 944 036 048
+                        </li>
+                        <li>
+                            <strong>Email:</strong> info@techquimlab.com
+                        </li>
+                        <li>
+                            <strong>Horario:</strong> Lunes a Viernes: 9:00 AM - 6:00 PM
+                        </li>
+                    </ul>
+                </div>
+                <div class="contact-form">
+                    <form action="#" method="post">
+                        <div class="form-group">
+                            <input type="text" class="form-control" placeholder="Nombre Completo" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" class="form-control" placeholder="Correo Electrónico" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="tel" class="form-control" placeholder="Teléfono">
+                        </div>
+                        <div class="form-group">
+                            <textarea class="form-control" placeholder="Mensaje" required></textarea>
+                        </div>
+                        <button type="submit" class="btn">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">Techquim<span>Lab</span></div>
+                <ul class="footer-links">
+                    <li><a href="#inicio">Inicio</a></li>
+                    <li><a href="#productos">Productos</a></li>
+                    <li><a href="#nosotros">Nosotros</a></li>
+                    <li><a href="#contacto">Contacto</a></li>
+                    <li><a href="#">Catálogo</a></li>
+                </ul>
+                <div class="footer-social">
+                    <a href="#"><span>FB</span></a>
+                    <a href="#"><span>IG</span></a>
+                    <a href="#"><span>LI</span></a>
+                    <a href="#"><span>TW</span></a>
+                </div>
+            </div>
+            <div class="copyright">
+                &copy; 2025 TechquimLab. Todos los derechos reservados.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
